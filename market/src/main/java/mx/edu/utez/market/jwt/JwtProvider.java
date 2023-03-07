@@ -16,11 +16,11 @@ public class JwtProvider {
     @Value("${jwt.secret}")
     private String secret;
     @Value("${jwt.expiration}")
-    private int expritacion;
+    private int expiration;
 
     public String generateToken(Authentication authentication) {
         AuthUser authUser = (AuthUser) authentication.getPrincipal();
-        return Jwts.builder().setSubject(authUser.getUsername()).setIssuedAt(new Date()).setExpiration(new Date(new Date().getTime() + expritacion * 1000L))
+        return Jwts.builder().setSubject(authUser.getUsername()).setIssuedAt(new Date()).setExpiration(new Date(new Date().getTime() + expiration * 1000L))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
